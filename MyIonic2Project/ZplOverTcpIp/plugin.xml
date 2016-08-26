@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova.plugin.zebra.tcp.printer" version="1.0.0"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>ZplOverTcpIp</name>
+	<js-module name="ZplOverTcpIp" src="www/ZplOverTcpIp.js">
+		<clobbers target="cordova.plugins.ZplOverTcpIp" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="ZplOverTcpIp">
+				<param name="android-package" value="cordova.plugin.zebra.tcp.printer.ZplOverTcpIp" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml" />
+		<source-file src="src/android/ZplOverTcpIp.java"
+			target-dir="src/cordova/plugin/zebra/tcp/printer/ZplOverTcpIp" />
+		<source-file src="src/android/ZSDK_ANDROID_API.jar" target-dir="libs"/>		
+	</platform>
+	
+	<platform name="ios">
+		
+		<config-file parent="/*" target="config.xml">
+			<feature name="ZplOverTcpIp">
+				<param name="ios-package" value="ZplOverTcpIp" />
+			</feature>
+		</config-file>
+	<!--
+	<config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
+		<array>
+		<string>com.zebra.rawport</string>
+		</array>
+    </config-file>
+	
+	-->
+		<source-file src="src/ios/ZplOverTcpIp.h" />
+		<source-file src="src/ios/ZplOverTcpIp.m" />
+		
+		<header-file src="src/ios/zebra/include/MfiBtPrinterConnection.h" />
+         <header-file src="src/ios/zebra/include/ZebraPrinterFactory.h" />
+          <header-file src="src/ios/zebra/include/ZebraPrinterConnection.h" />
+           <header-file src="src/ios/zebra/include/ZebraPrinter.h" />
+           <header-file src="src/ios/zebra/include/FormatUtil.h" />
+           <header-file src="src/ios/zebra/include/FileUtil.h" />
+
+        <header-file src="src/ios/zebra/include/PrinterStatus.h" />
+        <header-file src="src/ios/zebra/include/PrinterStatusMessages.h" />
+
+        <header-file src="src/ios/zebra/include/ZplPrintMode.h" />
+
+        <header-file src="src/ios/zebra/include/GraphicsUtil.h" />
+        <header-file src="src/ios/zebra/include/DiscoveredPrinter.h" />
+        <header-file src="src/ios/zebra/include/FieldDescriptionData.h" />
+
+        <header-file src="src/ios/zebra/include/DiscoveredPrinterNetwork.h" />
+        <header-file src="src/ios/zebra/include/MagCardReader.h" />
+        <header-file src="src/ios/zebra/include/NetworkDiscoverer.h" />
+        <header-file src="src/ios/zebra/include/SGD.h" />
+        <header-file src="src/ios/zebra/include/SmartCardReader.h" />
+
+        <header-file src="src/ios/zebra/include/ToolsUtil.h" />
+        <header-file src="src/ios/zebra/include/TcpPrinterConnection.h" />
+
+        <source-file src="src/ios/zebra/libZSDK_API.a" framework="true" />
+
+        <framework src="ExternalAccessory.framework" />
+		
+	</platform>
+	
+</plugin>

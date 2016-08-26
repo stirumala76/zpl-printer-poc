@@ -1,0 +1,19 @@
+{
+  "name": "ZplOverTcpIp",
+  "version": "1.0.0",
+  "description": "A plugin to print the lables for Zebra printer Gk420t",
+  "cordova": {
+    "id": "cordova.plugin.zebra.tcp.printer",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Sridhar Tirumala",
+  "license": "ISC"
+}
