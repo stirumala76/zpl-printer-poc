@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
-
+declare var ZPLPrinter: ZPLPrinter;
 
 @Component({
   templateUrl: 'build/pages/hello-ionic/hello-ionic.html'
@@ -8,19 +8,15 @@ import {Platform} from 'ionic-angular';
 export class HelloIonicPage {
 
 
-private platform:Platform;
-private toggleflag:boolean=false;
+  public toggleflag: boolean = false;
+  public bclables;
+
+  constructor(public platform: Platform) { }
 
 
-constructor(platform:Platform) {
+  onPrint() {
 
-this.platform=platform;
-}
-
-
-private onPrint(){
-
- let prnfile = '^XA'
+    let prnfile = '^XA'
       + '^DFR:SSFMT000.ZPL^FS'
       + '^FO125,20^ADN,36,20^FDMERITS^FS'
       + '^FO240,70^ADN,18,20^FDOrder #^FS'
@@ -43,36 +39,33 @@ private onPrint(){
       + '^PQ2,0,1,Y'
       + '^XZ';
 
-     this.platform.ready().then(() => {
-         
-          this.bclables.push(JSON.stringify({ prnfile: prnfile}));
+    this.platform.ready().then(() => {
 
-          ZPLPrinter.print('192.168.1.10', this.bclables,
-          function (success) {
-            alert(success);
-          }
-          ,
-          function (fail) {
-            alert('fail');
-          });
+      this.bclables.push(JSON.stringify({ prnfile: prnfile }));
 
-      });
+      ZPLPrinter.print('192.168.1.10', this.bclables,
+        function(success) {
+          alert(success);
+        }
+        ,
+        function(fail) {
+          alert('fail');
+        });
 
-
-}
-
-private onToggle(): void {
-
-if(this.toggleflag){
-  this.toggleflag=false;
-}else if(!this.toggleflag){
-  this.toggleflag=true;
-}     
-console.log(this.toggleflag) ;
+    });
 
 
+  }
 
-        //console.log(" Exit: getInvCtNumDetails::onToggle") ;
+  onToggle(): void {
+
+    if (this.toggleflag) {
+      this.toggleflag = false;
+    } else if (!this.toggleflag) {
+      this.toggleflag = true;
     }
+    console.log(this.toggleflag);
+    // console.log(" Exit: getInvCtNumDetails::onToggle") ;
+  }
 
 }
