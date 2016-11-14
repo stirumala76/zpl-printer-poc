@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
-declare var ZPLPrinter: ZPLPrinter;
+declare var cordova: Cordova;
 
 @Component({
   templateUrl: 'build/pages/hello-ionic/hello-ionic.html'
@@ -9,7 +9,7 @@ export class HelloIonicPage {
 
 
   public toggleflag: boolean = false;
-  public bclables;
+  public bclables = [];
 
   constructor(public platform: Platform) { }
 
@@ -40,16 +40,12 @@ export class HelloIonicPage {
       + '^XZ';
 
     this.platform.ready().then(() => {
-
       this.bclables.push(JSON.stringify({ prnfile: prnfile }));
-
-      ZPLPrinter.print('192.168.1.10', this.bclables,
-        function(success) {
-          alert(success);
-        }
-        ,
-        function(fail) {
-          alert('fail');
+      cordova.plugins.ZPLPrinter.print('192.168.10', this.bclables,
+        (success) => {
+            console.log(success);
+        }, (message) => {
+            alert('fail');
         });
 
     });

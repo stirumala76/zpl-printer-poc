@@ -1,3 +1,7 @@
+interface CordovaPlugins {
+  ZPLPrinter: ZPLPrinter;
+}
+
 interface ZPLPrinter {
 
   print(
